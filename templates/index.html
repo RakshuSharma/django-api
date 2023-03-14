@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    
+
+<div class="container">
+    <div class="row">
+
+    <table id="example" class="display responsive nowrap" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>email</th>
+                <th>phone</th>
+                <th>subject</th>
+                <th>Age</th>
+                <th>Message</th>
+                <th>Salary</th>
+                <th>Time</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in x %}
+            <tr>
+                <td>{{data.username}}</td>
+                <td>{{data.email}}</td>
+                <td>{{data.phone}}</td>
+                <td>{{data.subject}}</td>
+                <td>27</td>
+                <td>{{data.message}}</td>
+                <td>$112,000</td>
+                <td>{{data.created_at}}</td>
+                <td>
+                    <span><i class="fa fa-eye btn btn-success"></i></span>
+                    <span><a href="update/{{data.id}}/"><i class="fa fa-edit btn btn-primary"></i></a></span>
+                    <span><a href="deletedata/{{data.id}}/"><i class="fa fa-trash btn btn-danger"></i></a></span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <form action="/contact/" method="post" >
+            {% csrf_token %}
+            <input type="text"  class="form-control" name="username" id="" placeholder="username" required>
+            <br>
+            <input type="email" class="form-control" name="email" placeholder="email" required>
+            <br>
+            <input type="phone" class="form-control" name="phone" id="" placeholder="phone" required>
+            <br>
+            <input type="text" class="form-control" name="subject" id="" placeholder="subject" required>
+            <br>
+            <textarea name="message" class="form-control" id="" cols="30" rows="5" name="messag
+            "></textarea> 
+            <br>
+            <input type="submit" value="contact us" class="btn btn-primary">
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+</html>
